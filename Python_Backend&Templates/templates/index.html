@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>Casino</title>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='jscript.js') }}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style(profile).css') }}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='footer-basic-centered.css') }}"/>
+    <style type="text/css">
+        a{text-decoration:none;}
+        a{font-size:24px;}
+    </style>
+</head>
+   <body>
+   {% with messages=get_flashed_messages() %}
+   {% if messages %}
+   <script>
+       var messages={{messages | safe}}
+       for (var i=0; i< messages.length; i++) {
+            alert(messages[i]);
+       }
+   </script>
+   {% endif %}
+   {% endwith %}
+   <div style="background-color:orange; text-color:white;">
+    <table style="width:100%;  margin-left:20%">
+        <th> <a style="visited:white; color:white; " href="/index">Game</a> </th> <th><a style="visited:white; color:white;" href="/profile"> Profile</a> </th>
+    </table>
+   </div>
+   <div style=" width:85%; height:50%; float:left; ">
+      <form action = "/index" method = "GET">
+         <h1 style="color:red;"> HELLO {{userLogin }} </h1>
+
+      </form>
+   </div>
+     <div style="width:15%; height:50%; float:right; margin-top:2%;">
+          <a style="margin-top:15%;;" href="/logout"> Logout</a>
+     </div>
+
+ <main>
+     <div>
+         <div style =  " text-align:justify; -ms-text-justify:distribute-all-lines; text-justify:distribute-all-lines width:50% background-color:orange">
+             <CENTER>
+            <img src= "{{ url_for('static', filename = 'roulette.jpg') }}" margin=20%" width="850" height="350" alt="previous" border="0">
+            </CENTER>
+         </div>
+         <div style =  "  font-size:21px; text-align:center; width:25%; background-color:orange; margin-left:auto; display:flex; justify-content:center; align-items:center; display:inline-block; ">
+             <center><b>YOUR BETS</b></center>
+             {% for item in bets %}
+             <p ><ul><li>Field: {{item[-3]}} | {{item[-2]}}$ | Multiplier: {{item[-1]}}x</li></ul></p>
+             {% endfor %}
+            <form action="/play" method="GET"><button class="btn"style="width:75%; height:5%;  margin-right:5%; margin-bottom:1%;" type="submit"> Play</button></form>
+         </div>
+     </div>
+     <form action="/index" method="POST">
+         {{ form.hidden_tag() }}
+     <div STYLE=" background-color:orange; border-width:2px; border-style:solid; border-color:black; text-align:justify; -ms-text-justify:distribute-all-lines; text-justify:distribute-all-lines width:100%">
+        <div style=" margin-left:10%; width:15%; height:100% float:left; display: inline-block;">
+            <div>
+                    {{ form.userMoney.label }}      {{ form.userMoney(readonly=true) }}
+                    <br>
+
+                      {% for message in form.userMoney.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+        </div>
+          <div style=" width:25%; vertical-align:top; display: inline-block; *display:inline;">
+                <form action ="/smth" method="get"></form>
+                <form action="/doubleBet" method="get">
+                    <button class="btn" style="margin-top:1%; width:75px; height:50px; float:right" type="submit"> Double</button>
+                </form>
+               <form action="/cancelBet" method="get">
+                    <button class="btn" style=" margin-top:1%; width:75px; height:50px; float:right" type="submit"> Cancel</button>
+                </form>
+            </div>
+
+              <div style=" width:15%;  vertical-align:top; display:inline-block; *display:inline;">
+                <div style="width:10%">
+                    {{ form.betMoney.label }}      {{ form.betMoney }}
+                    <br>
+
+                      {% for message in form.betMoney.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+             </div>
+
+          <div style=" width:15%;   display:inline-block; *display:inline;">
+                <div>
+                    {{ form.betField.label }}      {{ form.betField }}
+                    <br>
+
+                      {% for message in form.betField.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+             </div>
+
+          <div style=" margin-top:3px; width:15%;  vertical-align:top; display:inline-block; *display:inline;">
+
+                    <button class="btn-success" style="width:100px; height:50px; " type="submit"> Create Bet</button>
+
+          </div>
+     </div> </form>
+     </div>
+ </main><!-- .content -->
+
+<footer class="footer-basic-centered" style="margin-top:0%">
+
+   <p class="footer-company-motto">The company motto.</p>
+
+   <p class="footer-links">
+    <a href="#">Home</a>
+    ·
+    <a href="#">Blog</a>
+    ·
+    <a href="#">Pricing</a>
+    ·
+    <a href="#">About</a>
+    ·
+    <a href="#">Faq</a>
+    ·
+    <a href="#">Contact</a>
+   </p>
+
+   <p class="footer-company-name">Company Name &copy; 2015</p>
+
+  </footer>
+
+
+</body>
+</html>
+

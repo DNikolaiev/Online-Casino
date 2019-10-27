@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head><link rel="stylesheet" href="{{url_for('static', filename='style.css') }}"></head>
+   <body>
+  {% with messages=get_flashed_messages() %}
+   {% if messages %}
+   <script>
+       var messages={{messages | safe}}
+       for (var i=0; i< messages.length; i++) {
+            alert(messages[i]);
+       }
+   </script>
+  <script>
+        $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+   {% endif %}
+   {% endwith %}
+      <form action = "/confirmBankUpdate" method = "POST">
+         <fieldset>
+            {{ form.hidden_tag() }}
+
+            <div class="login-page">
+
+                <div class="form">
+                    <form class="register-form">
+                    {{ form.card.label }}      {{ form.card }}
+                    <br>
+
+                      {% for message in form.card.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+
+
+
+                <div>
+                   {{ form.expDate.label }}     {{ form.expDate }}
+                   <br>
+                          {% for message in form.expDate.errors %}
+                             <div>{{ message }}</div>
+                            {% endfor %}
+                    <br>
+                </div>
+
+
+                 <div>
+                    {{ form.adress.label }}      {{form.adress}}
+                    <br>
+
+                      {% for message in form.adress.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+               <button type="submit">Update</button>
+                        <p class="message">Back to profile?<a href="/profile">GO</a></p>
+                </form>
+            </div>
+            </div>
+         </fieldset>
+      </form>
+
+   </body>
+</html>

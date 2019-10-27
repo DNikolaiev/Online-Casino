@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+    {% for id in ids %}
+        <h3>{{id}}</h3>
+        <div id="{{id}}"></div>
+    {% endfor %}
+
+</body>
+
+
+<footer>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script type="text/javascript">
+        var graphs = {{graphJSON | safe}};
+        var ids = {{ids | safe}};
+        for(let i=0; i<ids.length;i++) {
+            Plotly.plot(ids[i].toString(),
+                        [graphs[i]],{});
+        }
+    </script>
+</footer>
+
+</html>

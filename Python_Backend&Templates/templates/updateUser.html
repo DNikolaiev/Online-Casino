@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head><link rel="stylesheet" href="{{url_for('static', filename='style.css') }}"></head>
+   <body>
+  {% with messages=get_flashed_messages() %}
+   {% if messages %}
+   <script>
+       var messages={{messages | safe}}
+       for (var i=0; i< messages.length; i++) {
+            alert(messages[i]);
+       }
+   </script>
+  <script>
+        $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+   {% endif %}
+   {% endwith %}
+      <form action = "/confirmUserUpdate" method = "POST">
+         <fieldset>
+            {{ form.hidden_tag() }}
+
+            <div class="login-page">
+
+                <div class="form">
+                    <form class="register-form">
+                    {{ form.userName.label }}      {{ form.userName }}
+                    <br>
+
+                      {% for message in form.userName.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+
+
+
+                <div>
+                   {{ form.userAge.label }}     {{ form.userAge }}
+                   <br>
+                          {% for message in form.userAge.errors %}
+                             <div>{{ message }}</div>
+                            {% endfor %}
+                    <br>
+                </div>
+
+
+                 <div>
+                    {{ form.userMail.label }}      {{form.userMail}}
+                    <br>
+
+                      {% for message in form.userMail.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+               <button type="submit">Edit</button>
+                        <p class="message">Back to profile?<a href="/profile">GO</a></p>
+                </form>
+            </div>
+            </div>
+         </fieldset>
+      </form>
+
+   </body>
+</html>

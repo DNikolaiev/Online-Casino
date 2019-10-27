@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head><link rel="stylesheet" href="{{url_for('static', filename='style.css') }}"></head>
+   <body>
+  {% with messages=get_flashed_messages() %}
+   {% if messages %}
+   <script>
+       var messages={{messages | safe}}
+       for (var i=0; i< messages.length; i++) {
+            alert(messages[i]);
+       }
+   </script>
+  <script>
+        $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+   {% endif %}
+   {% endwith %}
+      <form action = "/registrate" method = "POST">
+         <fieldset>
+            {{ form.hidden_tag() }}
+
+            <div class="login-page">
+
+                <div class="form">
+                    <form class="register-form">
+                    {{ form.login.label }}      {{ form.login }}
+                    <br>
+
+                      {% for message in form.password.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+
+
+
+                <div>
+                   {{ form.password.label }}     {{ form.password }}
+                   <br>
+                          {% for message in form.login.errors %}
+                             <div>{{ message }}</div>
+                            {% endfor %}
+                    <br>
+                </div>
+
+
+                 <div>
+                    {{ form.email.label }}      {{ form.email }}
+                    <br>
+
+                      {% for message in form.email.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+                 <div>
+                    {{ form.name.label }}      {{ form.name }}
+                    <br>
+
+                      {% for message in form.name.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+                 <div>
+                    {{ form.age.label }}      {{ form.age }}
+                    <br>
+
+                      {% for message in form.age.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+               <button type="submit">Create</button>
+                        <p class="message">Already registered?<a href="/login">Sign in</a></p>
+                </form>
+            </div>
+            </div>
+         </fieldset>
+      </form>
+
+   </body>
+</html>

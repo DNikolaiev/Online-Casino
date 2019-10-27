@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+    <script>
+        $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+</head>
+   <body>
+  {% with messages=get_flashed_messages() %}
+   {% if messages %}
+   <script>
+       var messages={{messages | safe}}
+       for (var i=0; i< messages.length; i++) {
+            alert(messages[i]);
+       }
+   </script>
+   {% endif %}
+   {% endwith %}
+  <div class="login-page">
+      <div class="form">
+      <form class="login-form" action = "/login" method = "POST">
+         <fieldset>
+            {{ form.hidden_tag() }}
+
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+
+                <div>
+                    {{ form.login.label }}      {{ form.login }}
+                    <br>
+
+                      {% for message in form.password.errors %}
+                         <div>{{ message }}</div>
+                      {% endfor %}
+                    <br>
+                </div>
+
+
+                <div>
+                   {{ form.password.label }}     {{ form.password }}
+                   <br>
+                          {% for message in form.login.errors %}
+                             <div>{{ message }}</div>
+                            {% endfor %}
+                </div>
+
+               <button type="submit">Login</button>
+                <p class="message">Not registered? <a href="/registrate">Create an account</a></p>
+            </div>
+
+         </fieldset>
+      </form>
+          </div>
+      </div>
+
+   </body>
+</html>
