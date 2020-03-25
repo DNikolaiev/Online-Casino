@@ -8,7 +8,7 @@ Online Casino was created in SQL and Python, using Flask and Jinja templates
 * Web-development basics
 * Writing logic packages in PL SQL
 
-# DB Entities relations
+# DB Entities-relationship model
 <img src="https://user-images.githubusercontent.com/23034890/77584234-c2e9fc00-6ee2-11ea-88b7-a789ba2edf21.png"> <br /><br />
 
 
