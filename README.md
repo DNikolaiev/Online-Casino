@@ -1,5 +1,5 @@
 # Online-Casino
-Online Casino was created in SQL and Python, using Flask and Jinja templates
+Online Casino was created in <b>SQL</b> and <b>Python</b>, using <b>Flask</b> and Jinja templates
 
 # What i have learned
 * Working with Oracle Database
