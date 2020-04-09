@@ -6,6 +6,7 @@ Online Casino was created in <b>SQL</b> and <b>Python</b>, using <b>Flask</b> an
 * Creating and designing Database Entities and relations between them
 * Regular expressions and validating user input
 * Web-development basics
+* REST-Api 
 * Writing logic packages in PL SQL
 
 # DB Entities-relationship model
